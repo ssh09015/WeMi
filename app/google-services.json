@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8754338226",
+    "project_id": "wemi-128d0",
+    "storage_bucket": "wemi-128d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8754338226:android:c48c3644dc23b2b4f2acab",
+        "android_client_info": {
+          "package_name": "com.example.wemi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8754338226-jufp4vr4tqikfs2vbq068nmabhq7kkdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLtwKvquYwMjRaIT7I5g5CpAOdx5-vW10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8754338226-jufp4vr4tqikfs2vbq068nmabhq7kkdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
