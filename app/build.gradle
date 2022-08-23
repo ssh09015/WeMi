@@ -55,3 +55,9 @@ dependencies {
     //파이어베이스 인증
     implementation 'com.google.firebase:firebase-auth-ktx'
 }
+
+// 네이버 클라우드
+dependencies {
+    // 네이버 지도 SDK
+    implementation 'com.naver.maps:map-sdk:3.15.0'
+}
