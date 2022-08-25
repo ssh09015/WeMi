@@ -54,13 +54,24 @@ dependencies {
     
     //파이어베이스 인증
     implementation 'com.google.firebase:firebase-auth-ktx'
-}
 
-// 네이버 클라우드
-dependencies {
 
+    // 네이버 클라우드
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
     // 네이버 지도 SDK
     implementation 'com.naver.maps:map-sdk:3.15.0'
+
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }
+
+

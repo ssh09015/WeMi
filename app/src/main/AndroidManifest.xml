@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wemi">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="whateverString"
@@ -16,11 +21,16 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="1nocmge5q1" />
+
         <activity
-            android:name=".SupportActivity"
+            android:name=".MapViewActivity"
             android:exported="false" />
         <activity
-            android:name=".MapView"
+            android:name=".SupportActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -42,11 +52,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="1nocmge5q1" />
+
     </application>
 
 </manifest>
