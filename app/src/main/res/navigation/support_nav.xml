@@ -9,15 +9,36 @@
         android:id="@+id/allFragment"
         android:name="com.example.wemi.fragments.AllFragment"
         android:label="fragment_all"
-        tools:layout="@layout/fragment_all" />
+        tools:layout="@layout/fragment_all" >
+        <action
+            android:id="@+id/action_allFragment_to_publicFragment"
+            app:destination="@id/publicFragment" />
+        <action
+            android:id="@+id/action_allFragment_to_privateFragment"
+            app:destination="@id/privateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/publicFragment"
         android:name="com.example.wemi.fragments.PublicFragment"
         android:label="fragment_public"
-        tools:layout="@layout/fragment_public" />
+        tools:layout="@layout/fragment_public" >
+        <action
+            android:id="@+id/action_publicFragment_to_allFragment"
+            app:destination="@id/allFragment" />
+        <action
+            android:id="@+id/action_publicFragment_to_privateFragment"
+            app:destination="@id/privateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/privateFragment"
         android:name="com.example.wemi.fragments.PrivateFragment"
         android:label="fragment_private"
-        tools:layout="@layout/fragment_private" />
+        tools:layout="@layout/fragment_private" >
+        <action
+            android:id="@+id/action_privateFragment_to_allFragment"
+            app:destination="@id/allFragment" />
+        <action
+            android:id="@+id/action_privateFragment_to_publicFragment"
+            app:destination="@id/publicFragment" />
+    </fragment>
 </navigation>
