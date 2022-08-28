@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         button2=findViewById<Button>(R.id.button2)
         button2.setOnClickListener {
-            startActivity(Intent(this@MainActivity,MapViewActivity::class.java))
+            startActivity(Intent(this,MapViewActivity::class.java))
         }
 
         supportBtn = findViewById<Button>(R.id.supportBtn)
@@ -25,7 +25,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SupportActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }

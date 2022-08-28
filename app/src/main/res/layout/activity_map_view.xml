@@ -10,17 +10,17 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="83dp"
-        />
+        >
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/hospitalViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="100dp"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/hospitalViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints" />
+    </com.naver.maps.map.MapView>
 
     <com.naver.maps.map.widget.LocationButtonView
         android:layout_gravity="top|start"
@@ -29,7 +29,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />
-
-    <include layout="@layout/bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

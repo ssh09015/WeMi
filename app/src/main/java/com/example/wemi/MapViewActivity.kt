@@ -5,12 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.wemi.adapter.HospitalListAdapter
 import com.example.wemi.adapter.HospitalViewPagerAdapter
 import com.example.wemi.retrofit.HospitalData
 import com.example.wemi.retrofit.HospitalDto
@@ -39,12 +34,13 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
         onHospitalDataClicked(hospitalData = it)
     })
 
-    private val recyclerView:RecyclerView by lazy { findViewById(R.id.recyclerView) }
-    private val recyclerViewAdapter=HospitalListAdapter()
-
     private val currentLocationButton: LocationButtonView by lazy { findViewById(R.id.currentLocationButton) }
 
-    private val bottomSheetTitleTextView: TextView by lazy { findViewById(R.id.bottomSheetTitleTextView) }
+    // 뷰페이저 클릭 이벤트
+    private fun onHospitalDataClicked(hospitalData: HospitalData) {
+        val intent = Intent(this,ReviewMain::class.java)
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +52,9 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
         mapView.getMapAsync(this)
 
         initHospitalViewPager()
-
-        initHospitalRecyclerView()
     }
+
+
 
     // 맵 가져오기(from: getMapAsync)
     override fun onMapReady(map: NaverMap) {
@@ -107,8 +103,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                         response.body()?.let { dto ->
                             updateMarker(dto.items)
                             viewPagerAdapter.submitList(dto.items)
-                            recyclerViewAdapter.submitList(dto.items)
-                            bottomSheetTitleTextView.text = "${dto.items.size}개의 숙소"
                         }
                     }
 
@@ -138,13 +132,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             }
         })
     }
-
-    private fun initHospitalRecyclerView() {
-        recyclerView.adapter = recyclerViewAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-    }
-
-
     private fun updateMarker(hospitals: List<HospitalData>) {
         hospitals.forEach { hospital ->
 
@@ -191,20 +178,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             viewPager.currentItem = position
         }
         return true
-    }
-
-    private fun onHospitalDataClicked(hospitalData: HospitalData) {
-        // 공유 기능; 인텐트에있는 츄져사용할것임
-        val intent = Intent()
-            .apply {
-                action = Intent.ACTION_SEND
-                putExtra(
-                    Intent.EXTRA_TEXT,
-                    "[지금 이 가격에 예약하세요!!] ${hospitalData.title} ${hospitalData.price} 사진 보기(${hospitalData.imgUrl}",
-                )
-                type = "text/plain"
-            }
-        startActivity(Intent.createChooser(intent, null))
     }
 
 
