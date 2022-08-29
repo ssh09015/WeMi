@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,30 @@ class MainActivity : AppCompatActivity() {
         supportBtn.setOnClickListener {
             val intent = Intent(this, SupportActivity::class.java)
             startActivity(intent)
+        }
+
+        NavigationBarView.OnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.location -> {
+                    val intent = Intent(this, MapViewActivity::class.java)
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.support -> {
+                    val intent = Intent(this, SupportActivity::class.java)
+                    startActivity(intent)
+                    // Respond to navigation item 3 click
+                    true
+                }
+                R.id.myPage -> {
+                    //val intent = Intent(this, MyPageActivity::class.java)
+                    //startActivity(intent)
+                    // Respond to navigation item 4 click
+                    true
+                }
+                else -> false
+            }
         }
     }
 }
