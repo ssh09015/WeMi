@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val navi_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
         button2=findViewById<Button>(R.id.button2)
         button2.setOnClickListener {
             startActivity(Intent(this,MapViewActivity::class.java))
@@ -27,7 +29,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        NavigationBarView.OnItemSelectedListener { item ->
+        navi_bar.setOnItemSelectedListener { item ->
+
             when(item.itemId) {
                 R.id.location -> {
                     val intent = Intent(this, MapViewActivity::class.java)

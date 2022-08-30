@@ -10,6 +10,7 @@ import com.example.wemi.adapter.HospitalViewPagerAdapter
 import com.example.wemi.retrofit.HospitalData
 import com.example.wemi.retrofit.HospitalDto
 import com.example.wemi.retrofit.RetrofitService
+import com.google.android.material.navigation.NavigationBarView
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -53,7 +54,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
 
         initHospitalViewPager()
     }
-
 
 
     // 맵 가져오기(from: getMapAsync)
