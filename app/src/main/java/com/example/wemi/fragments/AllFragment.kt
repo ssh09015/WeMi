@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.wemi.R
 import com.example.wemi.databinding.FragmentAllBinding
+import com.example.wemi.support.SupportListVAdapter
+import com.example.wemi.support.SupportModel
 
 class AllFragment : Fragment() {
     private lateinit var binding: FragmentAllBinding
@@ -24,6 +26,12 @@ class AllFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, container, false)
+
+        val supportList = mutableListOf<SupportModel>()
+        supportList.add(SupportModel("a", "b", "c", "d"))
+
+        val supportRVAadapter = SupportListVAdapter(supportList)
+        binding.supportListArea.adapter = supportRVAadapter
 
         binding.publicTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_allFragment_to_publicFragment)
