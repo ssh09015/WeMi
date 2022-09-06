@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MypageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="마이페이지"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:layout_margin="30dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:id="@+id/defaultImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/mypage"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="김슈니"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="지원신청목록"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <HorizontalScrollView
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/supportList"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+                <Button
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/supportList2"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    />
+                <Button
+                    android:layout_marginRight="15dp"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!--커뮤니티-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="커뮤니티"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/communityBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="내가 쓴 글"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/communityBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="댓글 단 글"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+
+        <!--설정-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="설정"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/settingBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="비밀번호 변경"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/settingBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="로그아웃"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="개발자 문의 및 소개"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/devBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="개발자 소개"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/devBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="문의 메일 보내기"
+                android:textSize="15sp"
+                android:textColor="#6B6B6B"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

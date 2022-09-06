@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.myPage -> {
-                    //val intent = Intent(this, MyPageActivity::class.java)
-                    //startActivity(intent)
+                    val intent = Intent(this, MypageActivity::class.java)
+                    startActivity(intent)
                     // Respond to navigation item 4 click
                     true
                 }
