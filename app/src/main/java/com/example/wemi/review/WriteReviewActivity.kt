@@ -1,15 +1,8 @@
 package com.example.wemi.review
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import androidx.constraintlayout.widget.StateSet.TAG
-import com.example.wemi.R
-import com.example.wemi.auth.JoinActivity
 import com.example.wemi.databinding.ActivityWriteReviewBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +20,8 @@ class WriteReviewActivity : AppCompatActivity() {
     private val reviewAdapter:ReviewAdapter by lazy{
         ReviewAdapter()
     }
+
+
 
 
     private val ReviewModelList = mutableListOf<ReviewModel>()
@@ -59,6 +54,8 @@ class WriteReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //val title=intent.getStringExtra("title")
+
         binding.ratingbar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             binding.ratingbarText.text = "${rating}점"
             ratingscore = rating.toDouble()
@@ -78,7 +75,8 @@ class WriteReviewActivity : AppCompatActivity() {
             val splitNameArray = emailString.split("@")
             val comment = binding.comment.text.toString()
             val id = splitNameArray[0]
-            val reviewModel = ReviewModel(id,comment,ratingscore)
+            val hospitalName=intent.getStringExtra("title")
+            val reviewModel = ReviewModel("$hospitalName",id,comment,ratingscore)
 
             articleDB.push().setValue(reviewModel)
             finish()

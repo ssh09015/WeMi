@@ -32,6 +32,7 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
 
     private val ReviewModelList = mutableListOf<ReviewModel>()
 
+
     private val listener = object : ChildEventListener {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val reviewModel = snapshot.getValue(ReviewModel::class.java)
@@ -80,6 +81,10 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val binding = ActivityReviewMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val title=intent.getStringExtra("title")
+
+
         firestore=FirebaseFirestore.getInstance()
         ReviewModelList.clear()
         reviewAdapter = ReviewAdapter()
@@ -91,8 +96,9 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
 
 
         binding.review.setOnClickListener {
+            val intent=Intent(this, WriteReviewActivity::class.java)
+            intent.putExtra("title",title)
             startActivity(Intent(this,WriteReviewActivity::class.java))
-
         }
     }
 

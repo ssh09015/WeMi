@@ -2,13 +2,13 @@ package com.example.wemi
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.wemi.adapter.HospitalViewPagerAdapter
 import com.example.wemi.databinding.ActivityMapViewBinding
-import com.example.wemi.databinding.ActivityWriteReviewBinding
 import com.example.wemi.retrofit.HospitalData
 import com.example.wemi.retrofit.HospitalDto
 import com.example.wemi.retrofit.RetrofitService
@@ -34,6 +34,7 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
     private val viewPager:ViewPager2 by lazy { findViewById(R.id.hospitalViewPager) }
     private val viewPagerAdapter=HospitalViewPagerAdapter(itemClicked = {
         onHospitalDataClicked(hospitalData = it)
+        Toast.makeText(this.applicationContext, "$title", Toast.LENGTH_SHORT)
     })
 
     private val currentLocationButton: LocationButtonView by lazy { findViewById(R.id.currentLocationButton) }
@@ -41,13 +42,23 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
     // 뷰페이저 클릭 이벤트
     private fun onHospitalDataClicked(hospitalData: HospitalData) {
         val intent = Intent(this, ReviewMain::class.java)
-        startActivity(intent)
+        intent.putExtra("title",hospitalData.title)
+
+
+
+        val intent3 = Intent(this, ReviewMain::class.java)
+        startActivity(intent3)
     }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val binding = ActivityMapViewBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+
 
         mapView.onCreate(savedInstanceState)
 
@@ -97,23 +108,20 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                         if (response.isSuccessful.not()) {
                             // fail
                             Log.d("Retrofit", "실패1")
-
                             return
                         }
-
                         // 성공한 경우 아래 처리
                         response.body()?.let { dto ->
                             updateMarker(dto.items)
                             viewPagerAdapter.submitList(dto.items)
+
                         }
                     }
-
                     override fun onFailure(call: Call<HospitalDto>, t: Throwable) {
                         // 실패 처리 구현;
                         Log.d("Retrofit", "실패2")
                         Log.d("Retrofit", t.stackTraceToString())
                     }
-
                 })
         }
     }
@@ -130,6 +138,14 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                 val cameraUpdate =
                     CameraUpdate.scrollTo(LatLng(selectedHospitalData.lat, selectedHospitalData.lng))
                         .animate(CameraAnimation.Easing)
+
+
+
+                //intent.putExtra("title",selectedHospitalData.title)
+
+
+
+
                 naverMap.moveCamera(cameraUpdate)
             }
         })
@@ -143,8 +159,28 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             marker.tag = hospital.id
             marker.icon = MarkerIcons.BLACK
             marker.iconTintColor = Color.RED
-
+            /*val intent=Intent(this,ReviewMain::class.java)
+            intent.putExtra("title",hospital.title)*/
         }
+    }
+
+
+    // 지도 marker 클릭 시
+    override fun onClick(overlay: Overlay): Boolean {
+        // overlay : 마커 (맵 위에 있는 것들이 눌리면 반응하는 것)
+        overlay.tag
+        Log.d("onClick",overlay.tag.toString())
+
+        val selectedModel = viewPagerAdapter.currentList.firstOrNull {
+            it.id == overlay.tag
+        }
+        selectedModel?.let {
+            val position = viewPagerAdapter.currentList.indexOf(it)
+            viewPager.currentItem = position
+        }
+
+
+        return true
     }
 
     override fun onRequestPermissionsResult(
@@ -163,22 +199,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             }
             return
         }
-    }
-
-    // 지도 marker 클릭 시
-    override fun onClick(overlay: Overlay): Boolean {
-        // overlay : 마커 (맵 위에 있는 것들이 눌리면 반응하는 것)
-        overlay.tag
-        Log.d("onClick",overlay.tag.toString())
-
-        val selectedModel = viewPagerAdapter.currentList.firstOrNull {
-            it.id == overlay.tag
-        }
-        selectedModel?.let {
-            val position = viewPagerAdapter.currentList.indexOf(it)
-            viewPager.currentItem = position
-        }
-        return true
     }
 
 

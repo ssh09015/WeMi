@@ -32,7 +32,6 @@
         <activity
             android:name=".review.ReviewMain"/>
 
-        <activity android:name=".review.ReviewStore"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
