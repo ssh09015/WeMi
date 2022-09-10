@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RatingBar
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wemi.R
 import com.example.wemi.databinding.ActivityIntroBinding.inflate
@@ -54,35 +55,10 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         }
     }
 
-    /*private val ReviewModelList = mutableListOf<ReviewModel>()
-    val user = Firebase.auth.currentUser
-    var ratingscore = 0.0
-    private val listener = object : ChildEventListener {
-        override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-            val reviewModel = snapshot.getValue(ReviewModel::class.java)
-            reviewModel ?: return
-            ReviewModelList.add(reviewModel)
-            reviewAdapter.submitList(ReviewModelList)
-        }
-
-        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-        }
-
-        override fun onChildRemoved(snapshot: DataSnapshot) {
-        }
-
-        override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-        }
-    }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         val binding = ActivityReviewMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val title=intent.getStringExtra("title")
 
 
         firestore=FirebaseFirestore.getInstance()
@@ -97,8 +73,7 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
 
         binding.review.setOnClickListener {
             val intent=Intent(this, WriteReviewActivity::class.java)
-            intent.putExtra("title",title)
-            startActivity(Intent(this,WriteReviewActivity::class.java))
+            startActivity(intent)
         }
     }
 
