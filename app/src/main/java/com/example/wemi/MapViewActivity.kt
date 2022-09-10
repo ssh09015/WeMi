@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.example.wemi.adapter.HospitalViewPagerAdapter
+import com.example.wemi.databinding.ActivityMapViewBinding
+import com.example.wemi.databinding.ActivityWriteReviewBinding
 import com.example.wemi.retrofit.HospitalData
 import com.example.wemi.retrofit.HospitalDto
 import com.example.wemi.retrofit.RetrofitService
-import com.google.android.material.navigation.NavigationBarView
+import com.example.wemi.review.ReviewMain
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -22,7 +24,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var naverMap : NaverMap
@@ -39,13 +40,14 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
 
     // 뷰페이저 클릭 이벤트
     private fun onHospitalDataClicked(hospitalData: HospitalData) {
-        val intent = Intent(this,ReviewMain::class.java)
+        val intent = Intent(this, ReviewMain::class.java)
         startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val binding = ActivityMapViewBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map_view)
+        setContentView(binding.root)
 
         mapView.onCreate(savedInstanceState)
 
@@ -134,7 +136,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
     }
     private fun updateMarker(hospitals: List<HospitalData>) {
         hospitals.forEach { hospital ->
-
             val marker = Marker()
             marker.position = LatLng(hospital.lat, hospital.lng)
             marker.onClickListener = this // 마커 클릭 시 뷰 페이져 연동 되도록 구현

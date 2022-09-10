@@ -27,11 +27,12 @@
             android:name=".MypageActivity"
             android:exported="false" />
         <activity
-            android:name=".WriteReviewActivity"
+            android:name=".review.WriteReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".ReviewMain"
-            android:exported="false" />
+            android:name=".review.ReviewMain"/>
+
+        <activity android:name=".review.ReviewStore"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
