@@ -14,6 +14,7 @@ import com.example.wemi.retrofit.HospitalDto
 import com.example.wemi.retrofit.RetrofitService
 import com.example.wemi.review.ReviewMain
 import com.example.wemi.review.WriteReviewActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -55,6 +56,40 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
         // 맵가져오기
         mapView.getMapAsync(this)
         initHospitalViewPager()
+
+        val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
+
+        // BottomNavigation 기능 구현
+        nav_bar.run {
+            setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.community -> { // community 이름 버튼 누르면 MainActivity 이동
+                        myStartActivity(MainActivity::class.java)
+                        // Respond to navigation item 2 click
+                        true // 해당 버튼 활성화
+                    }
+                    R.id.support -> { // support 이름 버튼 누르면 SupportActivity로 이동
+                        myStartActivity(SupportActivity::class.java)
+                        // Respond to navigation item 3 click
+                        true
+                    }
+                    R.id.myPage -> { // myPage 이름 버튼 누르면 MypageActivity로 이동
+                        myStartActivity(MypageActivity::class.java)
+                        // Respond to navigation item 4 click
+                        true
+                    }
+                }
+                true // 지금 선택된 Id 버튼 활성화
+            }
+            selectedItemId=R.id.location // 지금 선택할 Id 버튼을 community라고 지정
+        }
+    }
+
+    // 애니메이션 사용하지 않고 Intent로 화면전환하는 함수
+    private fun myStartActivity(c: Class<*>) {
+        val intent = Intent(this, c)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
     }
 
     // 맵 가져오기(from: getMapAsync)
