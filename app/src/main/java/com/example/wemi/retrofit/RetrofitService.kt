@@ -2,6 +2,7 @@ package com.example.wemi.retrofit
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface RetrofitService {
     @GET("/v3/9904841e-293a-4f3d-ba73-9f7701118bc9") // mocky url

@@ -13,6 +13,7 @@ import com.example.wemi.retrofit.HospitalData
 import com.example.wemi.retrofit.HospitalDto
 import com.example.wemi.retrofit.RetrofitService
 import com.example.wemi.review.ReviewMain
+import com.example.wemi.review.WriteReviewActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -24,50 +25,37 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.GET
+
+
+
 
 class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var naverMap : NaverMap
     private lateinit var locationSource: FusedLocationSource
-
     private val mapView: MapView by lazy { findViewById(R.id.mapView) }
-
     private val viewPager:ViewPager2 by lazy { findViewById(R.id.hospitalViewPager) }
     private val viewPagerAdapter=HospitalViewPagerAdapter(itemClicked = {
         onHospitalDataClicked(hospitalData = it)
-        Toast.makeText(this.applicationContext, "$title", Toast.LENGTH_SHORT)
     })
-
     private val currentLocationButton: LocationButtonView by lazy { findViewById(R.id.currentLocationButton) }
+
 
     // 뷰페이저 클릭 이벤트
     private fun onHospitalDataClicked(hospitalData: HospitalData) {
         val intent = Intent(this, ReviewMain::class.java)
-        intent.putExtra("title",hospitalData.title)
-
-
-
-        val intent3 = Intent(this, ReviewMain::class.java)
-        startActivity(intent3)
+        startActivity(intent)
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val binding = ActivityMapViewBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-
-
-
         mapView.onCreate(savedInstanceState)
-
         // 맵가져오기
         mapView.getMapAsync(this)
-
         initHospitalViewPager()
     }
-
 
     // 맵 가져오기(from: getMapAsync)
     override fun onMapReady(map: NaverMap) {
@@ -114,7 +102,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                         response.body()?.let { dto ->
                             updateMarker(dto.items)
                             viewPagerAdapter.submitList(dto.items)
-
                         }
                     }
                     override fun onFailure(call: Call<HospitalDto>, t: Throwable) {
@@ -126,9 +113,9 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
         }
     }
 
+
     private fun initHospitalViewPager() {
         viewPager.adapter = viewPagerAdapter
-
         // page 변경시 처리
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -138,14 +125,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                 val cameraUpdate =
                     CameraUpdate.scrollTo(LatLng(selectedHospitalData.lat, selectedHospitalData.lng))
                         .animate(CameraAnimation.Easing)
-
-
-
-                //intent.putExtra("title",selectedHospitalData.title)
-
-
-
-
                 naverMap.moveCamera(cameraUpdate)
             }
         })
@@ -159,11 +138,8 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             marker.tag = hospital.id
             marker.icon = MarkerIcons.BLACK
             marker.iconTintColor = Color.RED
-            /*val intent=Intent(this,ReviewMain::class.java)
-            intent.putExtra("title",hospital.title)*/
         }
     }
-
 
     // 지도 marker 클릭 시
     override fun onClick(overlay: Overlay): Boolean {
@@ -178,8 +154,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             val position = viewPagerAdapter.currentList.indexOf(it)
             viewPager.currentItem = position
         }
-
-
         return true
     }
 
@@ -200,7 +174,6 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             return
         }
     }
-
 
     override fun onStart() {
         super.onStart()

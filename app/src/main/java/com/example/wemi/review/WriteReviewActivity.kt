@@ -53,9 +53,6 @@ class WriteReviewActivity : AppCompatActivity() {
         val binding = ActivityWriteReviewBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        //val title=intent.getStringExtra("title")
-
         binding.ratingbar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             binding.ratingbarText.text = "${rating}점"
             ratingscore = rating.toDouble()
@@ -75,8 +72,7 @@ class WriteReviewActivity : AppCompatActivity() {
             val splitNameArray = emailString.split("@")
             val comment = binding.comment.text.toString()
             val id = splitNameArray[0]
-            val hospitalName=intent.getStringExtra("title")
-            val reviewModel = ReviewModel("$hospitalName",id,comment,ratingscore)
+            val reviewModel = ReviewModel(id,comment,ratingscore)
 
             articleDB.push().setValue(reviewModel)
             finish()
