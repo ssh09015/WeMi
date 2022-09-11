@@ -15,12 +15,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        nav_bar.performClick();
 
         nav_bar.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.location -> {
                     val intent = Intent(this, MapViewActivity::class.java)
                     intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     // Respond to navigation item 2 click
                     true
