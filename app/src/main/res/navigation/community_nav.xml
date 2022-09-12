@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/community_nav"
+    app:startDestination="@id/comAllFragment">
+
+    <fragment
+        android:id="@+id/comAllFragment"
+        android:name="com.example.wemi.fragments.ComAllFragment"
+        android:label="fragment_com_all"
+        tools:layout="@layout/fragment_com_all" >
+        <action
+            android:id="@+id/action_comAllFragment_to_comWithFragment"
+            app:destination="@id/comWithFragment" />
+        <action
+            android:id="@+id/action_comAllFragment_to_comQuestionFragment"
+            app:destination="@id/comQuestionFragment" />
+        <action
+            android:id="@+id/action_comAllFragment_to_comShareFragment"
+            app:destination="@id/comShareFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comQuestionFragment"
+        android:name="com.example.wemi.fragments.ComQuestionFragment"
+        android:label="fragment_com_question"
+        tools:layout="@layout/fragment_com_question" >
+        <action
+            android:id="@+id/action_comQuestionFragment_to_comAllFragment"
+            app:destination="@id/comAllFragment" />
+        <action
+            android:id="@+id/action_comQuestionFragment_to_comWithFragment"
+            app:destination="@id/comWithFragment" />
+        <action
+            android:id="@+id/action_comQuestionFragment_to_comShareFragment"
+            app:destination="@id/comShareFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comShareFragment"
+        android:name="com.example.wemi.fragments.ComShareFragment"
+        android:label="fragment_com_share"
+        tools:layout="@layout/fragment_com_share" >
+        <action
+            android:id="@+id/action_comShareFragment_to_comAllFragment"
+            app:destination="@id/comAllFragment" />
+        <action
+            android:id="@+id/action_comShareFragment_to_comWithFragment"
+            app:destination="@id/comWithFragment" />
+        <action
+            android:id="@+id/action_comShareFragment_to_comQuestionFragment"
+            app:destination="@id/comQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comWithFragment"
+        android:name="com.example.wemi.fragments.ComWithFragment"
+        android:label="fragment_com_with"
+        tools:layout="@layout/fragment_com_with" >
+        <action
+            android:id="@+id/action_comWithFragment_to_comAllFragment"
+            app:destination="@id/comAllFragment" />
+        <action
+            android:id="@+id/action_comWithFragment_to_comQuestionFragment"
+            app:destination="@id/comQuestionFragment" />
+        <action
+            android:id="@+id/action_comWithFragment_to_comShareFragment"
+            app:destination="@id/comShareFragment" />
+    </fragment>
+</navigation>
