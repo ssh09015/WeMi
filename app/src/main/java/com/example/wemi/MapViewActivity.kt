@@ -59,7 +59,7 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
 
         val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 
-        // BottomNavigation 기능 구현
+        /*// BottomNavigation 기능 구현
         nav_bar.run {
             setOnItemSelectedListener { item ->
                 when (item.itemId) {
@@ -82,7 +82,7 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
                 true // 지금 선택된 Id 버튼 활성화
             }
             selectedItemId=R.id.location // 지금 선택할 Id 버튼을 community라고 지정
-        }
+        }*/
     }
 
     // 애니메이션 사용하지 않고 Intent로 화면전환하는 함수
