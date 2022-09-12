@@ -3,7 +3,9 @@ package com.example.wemi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.example.wemi.auth.IntroActivity
 import com.example.wemi.mypage.FindPWActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,7 +38,17 @@ class MypageActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-        val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
+
+        // 개발자 소개
+        devBtn1.setOnClickListener {
+            showDialog()
+        }
+        // 문의메일
+        devBtn2.setOnClickListener {
+            showDialog2()
+        }
+
+       val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 
         // BottomNavigation 기능 구현
         nav_bar.run {
@@ -71,4 +83,18 @@ class MypageActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun showDialog(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        mBuilder.show()
+    }
+    private fun showDialog2(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        mBuilder.show()
+    }
 }
