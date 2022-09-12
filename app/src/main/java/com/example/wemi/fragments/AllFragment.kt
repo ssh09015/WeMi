@@ -1,5 +1,6 @@
 package com.example.wemi.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.wemi.R
 import com.example.wemi.databinding.FragmentAllBinding
+import com.example.wemi.support.SupportInsideActivity
 import com.example.wemi.support.SupportListVAdapter
 import com.example.wemi.support.SupportModel
 import com.example.wemi.utils.FBRef
@@ -21,7 +23,8 @@ class AllFragment : Fragment() {
 
     private lateinit var binding: FragmentAllBinding
 
-    val supportList = mutableListOf<SupportModel>()
+    private val supportList = mutableListOf<SupportModel>()
+    private val supportKeyList = mutableListOf<String>()
 
     private lateinit var supportRVAdapter: SupportListVAdapter
 
@@ -40,12 +43,21 @@ class AllFragment : Fragment() {
         // 데이터 삽입
         FBRef.supportRef
             .push()
-            .setValue(SupportModel("에너지 바우처 난방비 지원(국민행복카드)", "한국에너지공단", "22.07.01 ~ 22.12.30", "* 생계급여/의료급여/주거급여 수급자", "한국 에너지 공단 지원의 내용입니다.", "uid"))
+            .setValue(SupportModel("민간지원","에너지 바우처 난방비 지원(국민행복카드)", "한국에너지공단", "22.07.01 ~ 22.12.30", "* 생계급여/의료급여/주거급여 수급자", "한국 에너지 공단 지원의 내용입니다.", "uid"))
 
 
         supportRVAdapter = SupportListVAdapter(supportList)
-        binding.supportListArea.adapter = supportRVAdapter
+        binding.supportListView.adapter = supportRVAdapter
 
+        binding.supportListView.setOnItemClickListener{ parent, view, position, id ->
+
+            val intent = Intent(context, SupportInsideActivity::class.java)
+            intent.putExtra("key", supportKeyList[position])
+            startActivity(intent)
+
+        }
+
+        // 상단 메뉴
         binding.publicTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_allFragment_to_publicFragment)
         }
