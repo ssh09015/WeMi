@@ -94,7 +94,7 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             }
 
             override fun onQueryTextChange(s: String?): Boolean {
-                reviewAdapter.getFilter().filter(s)
+                reviewAdapter.filter.filter(s)
                 return false
             }
         }
