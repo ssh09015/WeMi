@@ -25,7 +25,6 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     lateinit var articleDB: DatabaseReference
     lateinit var reviewAdapter: ReviewAdapter
 
-    lateinit var search_view: SearchView
     lateinit var reviewRecyclerView:RecyclerView
 
 
@@ -67,9 +66,6 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         setContentView(binding.root)
 
         reviewRecyclerView=findViewById(R.id.reviewRecyclerView)
-        search_view=findViewById(R.id.search_view)
-
-        search_view.setOnQueryTextListener(searchViewTextListener)
 
 
         firestore=FirebaseFirestore.getInstance()

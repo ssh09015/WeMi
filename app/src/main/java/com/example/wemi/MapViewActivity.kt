@@ -172,7 +172,7 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClick
             marker.map = naverMap
             marker.tag = hospital.id
             marker.icon = MarkerIcons.BLACK
-            marker.iconTintColor = Color.RED
+            marker.iconTintColor = Color.DKGRAY
         }
     }
 
