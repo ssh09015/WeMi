@@ -1,18 +1,17 @@
 package com.example.wemi.review
 
+import android.app.Person
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.RatingBar
-import android.widget.Toast
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.wemi.R
-import com.example.wemi.databinding.ActivityIntroBinding.inflate
 import com.example.wemi.databinding.ActivityReviewMainBinding
 import com.example.wemi.databinding.ActivityWriteReviewBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,8 +22,14 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_review_main.*
 
 class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
-    private lateinit var articleDB: DatabaseReference
-    private lateinit var reviewAdapter: ReviewAdapter
+
+    lateinit var articleDB: DatabaseReference
+    lateinit var reviewAdapter: ReviewAdapter
+
+    lateinit var search_view: SearchView
+    lateinit var reviewRecyclerView:RecyclerView
+
+
 
     var firestore:FirebaseFirestore?=null
 
@@ -38,8 +43,10 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val reviewModel = snapshot.getValue(ReviewModel::class.java)
             reviewModel ?: return
+
             ReviewModelList.add(reviewModel)
             reviewAdapter.submitList(ReviewModelList)
+
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -61,6 +68,12 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         setContentView(binding.root)
 
 
+        reviewRecyclerView=findViewById(R.id.reviewRecyclerView)
+        search_view=findViewById(R.id.search_view)
+
+        search_view.setOnQueryTextListener(searchViewTextListener)
+
+
         firestore=FirebaseFirestore.getInstance()
         ReviewModelList.clear()
         reviewAdapter = ReviewAdapter()
@@ -70,12 +83,23 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         articleDB.addChildEventListener(listener)
 
 
-
         binding.review.setOnClickListener {
             val intent=Intent(this, WriteReviewActivity::class.java)
             startActivity(intent)
         }
     }
+    var searchViewTextListener:SearchView.OnQueryTextListener=
+        object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(s:String):Boolean{
+                return false
+            }
+
+            override fun onQueryTextChange(s: String?): Boolean {
+                reviewAdapter.filter.filter(s)
+                return false
+            }
+        }
+
 
     override fun onResume() {
         super.onResume()
