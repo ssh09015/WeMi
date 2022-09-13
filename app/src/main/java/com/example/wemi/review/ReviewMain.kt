@@ -1,6 +1,5 @@
 package com.example.wemi.review
 
-import android.app.Person
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -67,7 +66,6 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         reviewRecyclerView=findViewById(R.id.reviewRecyclerView)
         search_view=findViewById(R.id.search_view)
 
@@ -87,6 +85,7 @@ class ReviewMain : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             val intent=Intent(this, WriteReviewActivity::class.java)
             startActivity(intent)
         }
+
     }
     var searchViewTextListener:SearchView.OnQueryTextListener=
         object :SearchView.OnQueryTextListener{
