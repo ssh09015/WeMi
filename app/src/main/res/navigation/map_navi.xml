@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_navi"
+    app:startDestination="@id/mapAllFragment">
+
+    <fragment
+        android:id="@+id/mapAllFragment"
+        android:name="com.example.wemi.fragments.MapAllFragment"
+        android:label="fragment_map_all"
+        tools:layout="@layout/fragment_map_all" >
+        <action
+            android:id="@+id/action_mapAllFragment_to_mapCureFragment"
+            app:destination="@id/mapCureFragment" />
+        <action
+            android:id="@+id/action_mapAllFragment_to_mapHospitalFragment"
+            app:destination="@id/mapHospitalFragment" />
+        <action
+            android:id="@+id/action_mapAllFragment_to_mapProtectFragment"
+            app:destination="@id/mapProtectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapHospitalFragment"
+        android:name="com.example.wemi.fragments.MapHospitalFragment"
+        android:label="fragment_map_hospital"
+        tools:layout="@layout/fragment_map_hospital" >
+        <action
+            android:id="@+id/action_mapHospitalFragment_to_mapCureFragment"
+            app:destination="@id/mapCureFragment" />
+        <action
+            android:id="@+id/action_mapHospitalFragment_to_mapProtectFragment"
+            app:destination="@id/mapProtectFragment" />
+        <action
+            android:id="@+id/action_mapHospitalFragment_to_mapAllFragment"
+            app:destination="@id/mapAllFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapCureFragment"
+        android:name="com.example.wemi.fragments.MapCureFragment"
+        android:label="fragment_map_cure"
+        tools:layout="@layout/fragment_map_cure" >
+        <action
+            android:id="@+id/action_mapCureFragment_to_mapAllFragment"
+            app:destination="@id/mapAllFragment" />
+        <action
+            android:id="@+id/action_mapCureFragment_to_mapHospitalFragment"
+            app:destination="@id/mapHospitalFragment" />
+        <action
+            android:id="@+id/action_mapCureFragment_to_mapProtectFragment"
+            app:destination="@id/mapProtectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapProtectFragment"
+        android:name="com.example.wemi.fragments.MapProtectFragment"
+        android:label="fragment_map_protect"
+        tools:layout="@layout/fragment_map_protect" >
+        <action
+            android:id="@+id/action_mapProtectFragment_to_mapHospitalFragment"
+            app:destination="@id/mapHospitalFragment" />
+        <action
+            android:id="@+id/action_mapProtectFragment_to_mapAllFragment"
+            app:destination="@id/mapAllFragment" />
+        <action
+            android:id="@+id/action_mapProtectFragment_to_mapCureFragment"
+            app:destination="@id/mapCureFragment" />
+    </fragment>
+</navigation>
