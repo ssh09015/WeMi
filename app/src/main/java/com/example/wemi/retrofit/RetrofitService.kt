@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("/v3/9904841e-293a-4f3d-ba73-9f7701118bc9") // mocky url
+    @GET("/v3/eae2dbd9-5eee-4c54-b7eb-0df7ebd611d0") // mocky url
     fun getHospitalData() : Call<HospitalDto> //응답받는 데이터 DTO
 }
