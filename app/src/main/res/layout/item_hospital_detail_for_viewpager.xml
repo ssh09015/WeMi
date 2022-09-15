@@ -31,34 +31,36 @@
             android:layout_marginEnd="12dp"
             android:maxLines="2"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/thumbnailImageView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="강남역 최저가!! dddddddddddddddddddddddddddddddddddd" />
+            android:textStyle="bold"
+            tools:text="병원 이름" />
 
         <TextView
             android:id="@+id/priceTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="17dp"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/thumbnailImageView"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            tools:text="99999원" />
+            tools:text="위치" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="80dp"
             android:layout_marginEnd="10dp"
-            android:text="리뷰 보기"
+            android:text="리뷰"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/priceTextView"
+            app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
