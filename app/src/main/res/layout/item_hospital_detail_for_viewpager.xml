@@ -18,9 +18,11 @@
             android:id="@+id/thumbnailImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -42,13 +44,14 @@
             android:id="@+id/priceTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="12dp"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/thumbnailImageView"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            app:layout_constraintVertical_bias="0.16"
             tools:text="위치" />
 
         <TextView
@@ -57,11 +60,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="24dp"
             android:text="리뷰"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/priceTextView"
+            app:layout_constraintVertical_bias="0.659" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
