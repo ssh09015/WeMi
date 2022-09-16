@@ -7,5 +7,6 @@ data class SupportModel (
     val period : String = "",
     val target : String = "",
     val content : String = "",
-    val uid : String = ""
+    val uid : String = "",
+    val webUrl : String = ""
 )

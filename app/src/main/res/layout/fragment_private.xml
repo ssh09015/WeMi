@@ -73,12 +73,10 @@
                     android:background="@color/maincolor"/>
             </LinearLayout>
 
-            <TextView
+            <ListView
+                android:id="@+id/supportPrivateListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="전체" />
-
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-
     </FrameLayout>
 </layout>

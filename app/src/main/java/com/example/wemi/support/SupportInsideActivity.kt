@@ -1,6 +1,7 @@
 package com.example.wemi.support
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +28,7 @@ class SupportInsideActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_support_inside)
 
+        //key값 받아오기
         val key = intent.getStringExtra("key")
         if (key != null) {
             getSupportData(key)
@@ -34,8 +36,16 @@ class SupportInsideActivity : AppCompatActivity() {
 
         //뒤로가기 버튼
         backBtn.setOnClickListener {
-            val intent = Intent(this, AllFragment::class.java)
-            startActivity(intent)
+            finish()
+        }
+
+        // 신청하기 버튼
+        applyBtn.setOnClickListener {
+            val getUrl = intent.getStringExtra("webUrl")
+            val i = Intent(Intent.ACTION_VIEW)
+
+            i.data = Uri.parse(getUrl.toString())
+            startActivity(i)
         }
 
     }
@@ -46,7 +56,7 @@ class SupportInsideActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val dataModel = dataSnapshot.getValue(SupportModel::class.java)
-                Log.d("SupportTest", dataModel!!.title)
+                //Log.d("SupportTest", dataModel!!.title)
 
                 binding.sortArea.text = dataModel!!.sort
                 binding.titleArea.text = dataModel!!.title

@@ -40,29 +40,33 @@ class AllFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, container, false)
 
-        // 데이터 삽입
-        FBRef.supportRef
-            .push()
-            .setValue(SupportModel("민간지원","에너지 바우처 난방비 지원(국민행복카드)", "한국에너지공단", "22.07.01 ~ 22.12.30", "* 생계급여/의료급여/주거급여 수급자", "한국 에너지 공단 지원의 내용입니다.", "uid"))
-
-
-        supportRVAdapter = SupportListVAdapter(supportList)
-        binding.supportListView.adapter = supportRVAdapter
-
-        binding.supportListView.setOnItemClickListener{ parent, view, position, id ->
-
-            val intent = Intent(context, SupportInsideActivity::class.java)
-            intent.putExtra("key", supportKeyList[position])
-            startActivity(intent)
-
-        }
-
         // 상단 메뉴
         binding.publicTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_allFragment_to_publicFragment)
         }
         binding.privateTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_allFragment_to_privateFragment)
+        }
+
+
+        // 데이터 삽입
+//        FBRef.supportRef
+//            .push()
+//            .setValue(SupportModel
+//                ("민간지원","test", "한국에너지공단", "22.07.01 ~ 22.12.30", "* 생계급여/의료급여/주거급여 수급자", "한국 에너지 공단 지원의 내용입니다.", "uid")
+//            )
+
+
+        supportRVAdapter = SupportListVAdapter(supportList)
+        binding.supportListView.adapter = supportRVAdapter
+
+        // 내부 페이지로 이동
+        binding.supportListView.setOnItemClickListener{ parent, view, position, id ->
+
+            val intent = Intent(context, SupportInsideActivity::class.java)
+            intent.putExtra("key", supportKeyList[position])
+            startActivity(intent)
+
         }
 
         getFBSupportData()
@@ -81,12 +85,13 @@ class AllFragment : Fragment() {
                 for (dataModel in dataSnapshot.children) {
 
                     Log.d("supportListtest", dataModel.toString())
-//                    dataModel.key
 
                     val item = dataModel.getValue(SupportModel::class.java)
                     supportList.add(item!!)
+                    supportKeyList.add(dataModel.key.toString())
 
                 }
+                supportKeyList.reverse()
                 supportList.reverse()
                 supportRVAdapter.notifyDataSetChanged()
 

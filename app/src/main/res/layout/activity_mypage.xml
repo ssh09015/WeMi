@@ -77,7 +77,6 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20sp"
-                        android:text="김슈니"
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
