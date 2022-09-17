@@ -8,7 +8,7 @@ class FBAuth {
 
     companion object {
 
-        private lateinit var auth: FirebaseAuth
+        lateinit var auth: FirebaseAuth
 
         fun getUid() : String {
 

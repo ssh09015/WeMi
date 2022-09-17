@@ -49,13 +49,6 @@ class PublicFragment : Fragment() {
             it.findNavController().navigate(R.id.action_publicFragment_to_privateFragment)
         }
 
-        //데이터 삽입
-        FBRef.supportRef
-            .push()
-            .setValue(SupportModel
-                ("정부지원","서울형 긴급복지", "서울시", " ~ ", "* 서울 거주 저소득 위기가구", "갑작스러운 위기 사유의 발생으로 생계유지가 곤란한 저소득 위기가구에 대해 생계비 등을 신속하게 제공하여 안정적 생활을 유지하도록 지원", "uid")
-            )
-
         supportPublicRVAdapter = SupportPublicListVAdapter(supportPublicList)
         binding.supportPublicListView.adapter = supportPublicRVAdapter
 
@@ -64,6 +57,7 @@ class PublicFragment : Fragment() {
 
             val intent = Intent(context, SupportInsideActivity::class.java)
             intent.putExtra("key", supportPublicKeyList[position])
+            intent.putExtra("url", supportPublicList[position].webUrl)
             startActivity(intent)
 
         }

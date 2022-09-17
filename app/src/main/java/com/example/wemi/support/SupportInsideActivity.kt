@@ -41,7 +41,7 @@ class SupportInsideActivity : AppCompatActivity() {
 
         // 신청하기 버튼
         applyBtn.setOnClickListener {
-            val getUrl = intent.getStringExtra("webUrl")
+            val getUrl = intent.getStringExtra("url")
             val i = Intent(Intent.ACTION_VIEW)
 
             i.data = Uri.parse(getUrl.toString())
@@ -56,7 +56,6 @@ class SupportInsideActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val dataModel = dataSnapshot.getValue(SupportModel::class.java)
-                //Log.d("SupportTest", dataModel!!.title)
 
                 binding.sortArea.text = dataModel!!.sort
                 binding.titleArea.text = dataModel!!.title

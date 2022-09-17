@@ -48,23 +48,42 @@ class AllFragment : Fragment() {
             it.findNavController().navigate(R.id.action_allFragment_to_privateFragment)
         }
 
+        supportRVAdapter = SupportListVAdapter(supportList)
+        binding.supportListView.adapter = supportRVAdapter
 
-        // 데이터 삽입
+//        //데이터 삽입
 //        FBRef.supportRef
 //            .push()
 //            .setValue(SupportModel
-//                ("민간지원","test", "한국에너지공단", "22.07.01 ~ 22.12.30", "* 생계급여/의료급여/주거급여 수급자", "한국 에너지 공단 지원의 내용입니다.", "uid")
+//                ("정부지원",
+//                "서울형 긴급복지",
+//                "서울시",
+//                " ~ ",
+//                "* 서울 거주 저소득 위기가구",
+//                "갑작스러운 위기 사유의 발생으로 생계유지가 곤란한 저소득 위기가구에 대해 생계비 등을 신속하게 제공하여 안정적 생활을 유지하도록 지원",
+//                "uid",
+//                "https://news.seoul.go.kr/welfare/archives/48196")
 //            )
-
-
-        supportRVAdapter = SupportListVAdapter(supportList)
-        binding.supportListView.adapter = supportRVAdapter
+//        //데이터 삽입
+//        FBRef.supportRef
+//            .push()
+//            .setValue(SupportModel
+//                ("민간지원",
+//                "청소년 미혼모 경제적 자립 지원",
+//                "여성인권 동감",
+//                " ~ ",
+//                "* 출산예정 또는 48계월이하 자녀를 둔 청소년 미혼모 여성",
+//                "재가 청소년(만 24세 이하) 미혼모 가정의 건강한 경제적 독립을 위한 지원사업",
+//                "uid",
+//                "http://humanagree.com/activityboard1/183361")
+//            )
 
         // 내부 페이지로 이동
         binding.supportListView.setOnItemClickListener{ parent, view, position, id ->
 
             val intent = Intent(context, SupportInsideActivity::class.java)
             intent.putExtra("key", supportKeyList[position])
+            intent.putExtra("url", supportList[position].webUrl)
             startActivity(intent)
 
         }
