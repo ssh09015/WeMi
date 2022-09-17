@@ -73,10 +73,10 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
-            <TextView
+            <ListView
+                android:id="@+id/supportPublicListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="전체" />
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

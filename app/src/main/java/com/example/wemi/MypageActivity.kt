@@ -8,11 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.example.wemi.auth.IntroActivity
 import com.example.wemi.mypage.FindPWActivity
+import com.example.wemi.utils.FBAuth
+import com.example.wemi.utils.FBAuth.Companion.getUid
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_mypage.*
+
 
 class MypageActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -23,6 +27,11 @@ class MypageActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        FBAuth.auth = FirebaseAuth.getInstance()
+        val email = FBAuth.auth.currentUser?.email.toString()
+
+        val uid = userName as TextView
+        uid.setText(email)
 
         // 비밀번호 변경 버튼
         settingBtn1.setOnClickListener {
@@ -31,7 +40,7 @@ class MypageActivity : AppCompatActivity() {
         }
 
         //로그아웃
-        findViewById<TextView>(R.id.settingBtn2).setOnClickListener {
+        settingBtn2.setOnClickListener {
             auth.signOut()
 
             val intent = Intent(this, IntroActivity::class.java)
@@ -47,6 +56,7 @@ class MypageActivity : AppCompatActivity() {
         devBtn2.setOnClickListener {
             showDialog2()
         }
+
 
        val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 
