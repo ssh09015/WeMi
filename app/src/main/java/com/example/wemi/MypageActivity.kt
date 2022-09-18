@@ -1,19 +1,26 @@
 package com.example.wemi
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.example.wemi.auth.IntroActivity
 import com.example.wemi.mypage.FindPWActivity
+import com.example.wemi.support.SupportModel
 import com.example.wemi.utils.FBAuth
 import com.example.wemi.utils.FBAuth.Companion.getUid
+import com.example.wemi.utils.FBRef
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_mypage.*
 
@@ -29,16 +36,20 @@ class MypageActivity : AppCompatActivity() {
 
         FBAuth.auth = FirebaseAuth.getInstance()
         val email = FBAuth.auth.currentUser?.email.toString()
-
         val uid = userName as TextView
         uid.setText(email)
+
+        val applyIdList = mutableListOf<String>()
+        val items = ArrayList<SupportModel>()
+        val itemKeyList = ArrayList<String>()
+
+        //lateinit var rvAdapter : ApplyListVAdapter
 
         // 비밀번호 변경 버튼
         settingBtn1.setOnClickListener {
             val intent = Intent(this, FindPWActivity::class.java)
             startActivity(intent)
         }
-
         //로그아웃
         settingBtn2.setOnClickListener {
             auth.signOut()
@@ -57,8 +68,13 @@ class MypageActivity : AppCompatActivity() {
             showDialog2()
         }
 
+        //apply list
+        //getFBApplyData()
 
-       val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        //rvAdapter = ApplyListVAdapter(items, itemKeyList, applyIdList)
+
+
+        val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 
         // BottomNavigation 기능 구현
         nav_bar.run {
@@ -107,4 +123,51 @@ class MypageActivity : AppCompatActivity() {
 
         mBuilder.show()
     }
+    //support list object 가져오기
+//    private fun getFBSupportData(){
+//
+//        val postListener = object : ValueEventListener {
+//            @SuppressLint("NotifyDataSetChanged")
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                //supportList.clear()
+//
+//                for (dataModel in dataSnapshot.children) {
+//                    val item = dataModel.getValue(SupportModel::class.java)
+//
+//                    if(applyIdList.contains(dataModel.key.toString())){
+//                        items.add(item!!)
+//                        itemKeyList.add(dataModel.key.toString())
+//                    }
+//                }
+//                rvAdapter.notifyDataSetChanged()
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Getting Post failed, log a message
+//                Log.w("ApplyListtest", "loadPost:onCancelled", databaseError.toException())
+//            }
+//        }
+//        FBRef.supportRef.addValueEventListener(postListener)
+//    }
+    //apply 데이터 불러오기
+//    private fun getFBApplyData(){
+//
+//        val postListener = object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                for (dataModel in dataSnapshot.children) {
+//                    applyIdList.add(dataModel.key.toString())
+//                }
+//
+//                getFBSupportData()
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Getting Post failed, log a message
+//                Log.w("applyListtest", "loadPost:onCancelled", databaseError.toException())
+//            }
+//        }
+//        FBRef.supportRef.child(getUid()).addValueEventListener(postListener)
+//    }
 }

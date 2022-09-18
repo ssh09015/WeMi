@@ -10,6 +10,7 @@ import com.example.wemi.R
 import com.example.wemi.databinding.ActivitySupportInsideBinding
 import com.example.wemi.fragments.AllFragment
 import com.example.wemi.mypage.FindPWActivity
+import com.example.wemi.utils.FBAuth
 import com.example.wemi.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,7 +40,7 @@ class SupportInsideActivity : AppCompatActivity() {
             finish()
         }
 
-        // 신청하기 버튼
+        // 신청하기 버튼 _ 링크 이동
         applyBtn.setOnClickListener {
             val getUrl = intent.getStringExtra("url")
             val i = Intent(Intent.ACTION_VIEW)
@@ -48,8 +49,31 @@ class SupportInsideActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        // 지원완료 버튼 _ toggle
+        apply_toggle.setOnClickListener {
+            if (apply_toggle.isChecked) {
+                // toggle_on
+                apply_toggle.setBackgroundResource(R.drawable.toggle_off)
+                if (key != null) {
+                    FBRef.applyRef
+                        .child(FBAuth.getUid()).
+                        child(key)
+                        .removeValue()
+                }
+            }else{
+                //toggle_off
+                apply_toggle.setBackgroundResource(R.drawable.toggle_on)
+                if (key != null) {
+                    FBRef.applyRef
+                        .child(FBAuth.getUid()).
+                        child(key)
+                        .setValue(ApplyModel(true))
+                }
+            }
+        }
     }
 
+    // firebase realtimedatabase에서 데이터 받아오기
     private fun getSupportData(key : String){
 
         val postListener = object : ValueEventListener {

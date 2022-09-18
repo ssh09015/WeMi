@@ -9,7 +9,7 @@ class FBRef {
         private val database = Firebase.database
 
         val supportRef = database.getReference("support")
-
+        val applyRef = database.getReference("apply_list")
     }
 
 }
