@@ -95,10 +95,38 @@
                     android:layout_marginRight="10dp"/>
             </LinearLayout>
 
-            <ListView
-                android:id="@+id/communityListView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/background_radius_white"
+                android:text="산부인과 어디가 괜찮나요?"
+                android:textSize="30sp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/background_radius_white"
+                android:text="아기 용품 나눔해요"
+                android:textSize="30sp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/background_radius_white"
+                android:text="XX 센터 교육 같이 받으러가실 분 구해요"
+                android:textSize="30sp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/background_radius_white"
+                android:text="산부인과 어디가 괜찮나요?"
+                android:textSize="30sp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </FrameLayout>

@@ -95,6 +95,14 @@
                     android:layout_marginRight="10dp"/>
             </LinearLayout>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/background_radius_white"
+                android:text="아기 용품 나눔해요"
+                android:textSize="30sp"
+                android:textColor="@color/black"/>
+
         </LinearLayout>
     </FrameLayout>
 </layout>
