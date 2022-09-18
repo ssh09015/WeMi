@@ -4,15 +4,36 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.wemi.community.EditCommunityActivity
+import com.example.wemi.databinding.ActivityMainBinding
+import com.example.wemi.fragments.ComAllFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        val view = binding.root
+        setContentView(view)
+
+        var sort = intent.getStringExtra("sort")
+        var nickname = intent.getStringExtra("nickname")
+        var title = intent.getStringExtra("title")
+        var content = intent.getStringExtra("content")
+        val bundle = Bundle()
+
+        bundle.putString("sort", sort)
+        bundle.putString("nickname", nickname)
+        bundle.putString("title", title)
+        bundle.putString("content", content)
+
+        val fragmentA = ComAllFragment()
+        fragmentA.arguments = bundle
 
         val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 

@@ -41,7 +41,7 @@ class ComShareFragment : Fragment() {
             it.findNavController().navigate(R.id.action_comShareFragment_to_comWithFragment)
         }
 
-        items.add(CommunityModel("카테고리", "닉네임", "시간","제목","내용","댓글"))
+        items.add(CommunityModel("카테고리", "닉네임", "제목","내용"))
 
         val adapter = CommunityShareAdapter(items)
         communityListView.adapter = adapter
