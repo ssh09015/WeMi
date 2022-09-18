@@ -17,19 +17,11 @@ import kotlinx.android.synthetic.main.fragment_com_all.*
 class ComQuestionFragment : Fragment() {
     private lateinit var binding: FragmentComQuestionBinding
 
+    private val items = mutableListOf<CommunityModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val items = mutableListOf<CommunityModel>()
-
-        items.add(CommunityModel("카테고리", "닉네임", "시간","제목","내용","댓글"))
-
-        val adapter = CommunityQuestionAdapter(items)
-        communityListView.adapter = adapter
-
-        communityListView.setOnItemClickListener { parent : AdapterView<*>, view : View, position : Int, id : Long ->
-            // 커뮤 안으로 들어가기
-        }
     }
 
     override fun onCreateView(
@@ -49,6 +41,16 @@ class ComQuestionFragment : Fragment() {
         binding.withTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_comQuestionFragment_to_comWithFragment)
         }
+
+        items.add(CommunityModel("카테고리", "닉네임", "시간","제목","내용","댓글"))
+
+        val adapter = CommunityQuestionAdapter(items)
+        communityListView.adapter = adapter
+
+        communityListView.setOnItemClickListener { parent : AdapterView<*>, view : View, position : Int, id : Long ->
+            // 커뮤 안으로 들어가기
+        }
+
         return binding.root
     }
 }
