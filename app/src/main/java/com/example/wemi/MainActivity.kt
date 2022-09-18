@@ -3,20 +3,17 @@ package com.example.wemi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import com.example.wemi.community.EditCommunityActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var addContent : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val addContent = findViewById<ImageButton>(R.id.addContent)
         val nav_bar = findViewById<BottomNavigationView>(R.id.nav_bar)
 
         addContent.setOnClickListener {

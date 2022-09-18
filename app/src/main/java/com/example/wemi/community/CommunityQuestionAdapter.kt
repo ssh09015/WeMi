@@ -23,14 +23,12 @@ class CommunityQuestionAdapter (private var items : MutableList<CommunityModel>)
 
         val sort = view?.findViewById<TextView>(R.id.comSort)
         val nickname = view?.findViewById<TextView>(R.id.comNickname)
-        val timetable = view?.findViewById<TextView>(R.id.comTimetable)
         val title = view?.findViewById<TextView>(R.id.comTitle)
         val content = view?.findViewById<TextView>(R.id.comContent)
         val comment = view?.findViewById<TextView>(R.id.comComment)
 
         sort!!.text = items[position].sort
         nickname!!.text = items[position].nickname
-        timetable!!.text = items[position].timetable
         title!!.text = items[position].title
         content!!.text = items[position].content
         comment!!.text = items[position].comment
